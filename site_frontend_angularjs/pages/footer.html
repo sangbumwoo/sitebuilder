@@ -1,0 +1,33 @@
+<div class="{{vm.site.backgroundClass}} w3-padding-bottom">
+    <div class="w3-content" style="max-width:990px;margin-top:5px;margin-bottom:40px">
+        <div class="w3-container">
+            <div ng-if="!vm.site.backgroundClass" class="w3-border-top">
+            </div>
+            <div class="w3-row w3-margin-top">
+                <div class="w3-col m9">
+                    <div class="w3-left">
+                        <a href="" ui-sref="home">
+                            <img ng-src="{{vm.config.footerLogoUrl}}" alt="" style="max-height:60px; margin-bottom:8px;">
+                            <span class="w3-text-mlrngreen" style="font-size:1.3em">{{vm.config.appTitle}}</span>
+                        </a>
+                    </div>
+                    <div class="w3-left w3-margin-left" style="font-size:0.9em">
+                        <span ng-if="vm.config.email">E-mail :</span> {{vm.config.email}}
+                        <br> {{vm.config.address1}}
+                        <br> {{vm.config.address2}}
+                    </div>
+                </div>
+                <div class="w3-col m3 w3-padding-top w3-text-gray">
+                    <div class="w3-dropdown-click w3-small" style="width:100%">
+                        <button ng-click="vm.relatedLinkClick($event);" class="w3-button w3-left-align w3-block w3-text-gray">
+                            Related Links
+                        </button>
+                        <div ng-if="vm.showRelatedLinkDropdown" class="w3-dropdown-content w3-transparent w3-show w3-bar-block w3-border" style="width:100%; bottom:0px; padding-bottom:3em;">
+                            <a href="" ng-href="{{item.url}}" target="_blank" class="w3-white w3-bar-item w3-button" ng-repeat="item in vm.appContext.relatedLinks">{{item.title}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

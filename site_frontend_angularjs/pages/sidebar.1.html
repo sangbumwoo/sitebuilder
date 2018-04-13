@@ -1,0 +1,31 @@
+<div class="w3-margin-bottom" ng-if="$stateParams.main_menu === menu.name" ng-repeat="menu in vm.appContext.menuArray">
+  <div class="w3-margin-bottom">
+    <h5 class="w3-center">{{menu.title}}</h5>
+  </div>
+  <div class="w3-border-top">
+    <div ng-repeat="item in menu.list" href="" class="w3-block w3-border-bottom" style="font-size:0.94em;white-space:nowrap;">
+
+      <div ng-if="item.list">
+        <div style="cursor:pointer; padding:10px 4px 2px; " ng-click="vm.menuClick(item)" ui-sref="{{ sub_item.mode==='board' ? 'board.list({main_menu: menu.name,sub_menu:item.list[0].name})' : 'board.page({main_menu:
+      menu.name,sub_menu:item.list[0].name})'}}">
+          <strong>{{item.title}} </strong>
+        </div>
+        <div ng-if="vm.selectedMenu.title === item.title" ng-repeat="sub_item in item.list">
+          <div style="cursor:pointer; padding:8px 4px; font-size: 0.9em" ng-class="{'{{vm.config.backgroundClass}}'
+        :$stateParams.sub_menu === sub_item.name, 'w3-hover-white':$stateParams.sub_menu != sub_item.name, '{{vm.config.hoverBackgroundClass}}':$stateParams.sub_menu == sub_item.name}"
+            ng-click="vm.activeMenu=''; $event.stopPropagation()" ui-sref="{{ sub_item.mode==='board' 
+      ? 'board.list({main_menu: menu.name,sub_menu:sub_item.name})' 
+      : 'board.page({main_menu: menu.name,sub_menu:sub_item.name})'}}">
+            {{sub_item.title}}
+          </div>
+        </div>
+      </div>
+
+      <div ng-if="!item.list" ng-click="vm.menuClick(item)" style="cursor:pointer; padding:10px 4px; " ng-class="{'{{vm.config.backgroundClass}}':$stateParams.sub_menu === item.name, 'w3-hover-white':$stateParams.sub_menu != item.name, '{{vm.config.hoverBackgroundClass}}':$stateParams.sub_menu == item.name}"
+        ng-click="vm.activeMenu=''; $event.stopPropagation()" ui-sref="{{ item.mode==='board' ? 'board.list({main_menu: menu.name,sub_menu:item.name})' : 'board.page({main_menu: menu.name,sub_menu:item.name})'}}">
+        <strong>{{item.title}} </strong>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,4 @@
+    <h2 ng-if="$stateParams.main_menu != 'home'" class="w3-padding-left w3-padding-bottom" style="color:#003f72; border-bottom: 2px solid #ddd">
+        {{vm.appContext.selectedMenu.title ==='인사말' ? '한국SDSN회장' : vm.appContext.selectedMenu.title}}
+    </h2>
+    <div ui-view style="min-height: 300px;"></div>

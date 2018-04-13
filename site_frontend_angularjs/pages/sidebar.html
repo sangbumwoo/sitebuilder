@@ -1,0 +1,36 @@
+<div class="w3-margin-bottom" ng-if="$stateParams.main_menu === menu.name" ng-repeat="menu in vm.appContext.menuArray.list">
+  <div class="w3-margin-bottom">
+    <h5 class="w3-center">{{menu.title}}</h5>
+  </div>
+  <div class="w3-border-top">
+    <div ng-repeat="item in menu.list" href="" class="w3-block w3-border-bottom" style="font-size:0.94em;white-space:nowrap;">
+      <!-- 하위메뉴가 없는 경우 -->
+      <div ng-if="!item.list" ng-click="vm.menuClick(item)" style="padding:4px 4px;cursor:pointer" 
+      ng-class="{ '{{vm.site.backgroundClass}}' :item.name == $stateParams.sub_menu}"
+      ui-sref="{{ item.mode==='board' ? 'board.list({main_menu: menu.name,sub_menu:item.name})' : 'board.page({main_menu:
+      menu.name,sub_menu:item.name})'}}"><b>{{item.title}}</b></div>
+      <!-- 하위메뉴가 있는 경우 -->
+      <div ng-if="item.list" ng-click="vm.menuClick(item)" style="padding:4px 4px;cursor:pointer" 
+      ui-sref="{{ item.mode==='board' ? 'board.list({main_menu: menu.name,sub_menu:item.list[0].name})' : 'board.page({main_menu:
+      menu.name,sub_menu:item.list[0].name})'}}"><b>{{item.title}}</b></div>
+      <!-- 하위메뉴 -->
+      <!-- <div ng-show="vm.appContext.selectedMenu == item" ng-repeat="sub_item in item.list" style="padding:4px 4px;cursor:pointer" 
+       ng-class="{ '{{vm.site.backgroundClass}}' :sub_item.name == $stateParams.sub_menu}"
+       ui-sref="{{ sub_item.mode==='board' ? 'board.list({main_menu: menu.name,sub_menu:sub_item.name})' : 'board.page({main_menu:
+      menu.name,sub_menu:sub_item.name})'}}"
+      >{{sub_item.title}}</div> -->
+
+      <div ng-show="vm.menu === item" ng-repeat="sub_item in item.list" style="padding:4px 4px;cursor:pointer; white-space:normal;" ng-class="{ '{{vm.site.backgroundClass}}' :sub_item.name == $stateParams.sub_menu}"
+        ui-sref="{{ sub_item.mode==='board' ? 'board.list({main_menu: menu.name,sub_menu:sub_item.name})' : 'board.page({main_menu:
+            menu.name,sub_menu:sub_item.name})'}}">{{sub_item.title}}</div>
+
+    </div>
+  </div>
+</div>
+<!-- 
+<hr/>
+
+{{vm.selectedMenu}}
+<hr/>
+vm.appContext.menu
+{{vm.appContext.menu}} -->

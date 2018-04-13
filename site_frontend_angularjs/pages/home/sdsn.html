@@ -1,0 +1,120 @@
+<!-- main banner -->
+<div style="height: 360px; overflow:hidden" id="bannerCarousel" class="carousel slide" data-ride="carousel" data-interval="5000">
+    <ol class="carousel-indicators">
+        <li class="w3-circle" ng-repeat="slide in vm.slides track by $index" data-target="#bannerCarousel" data-slide-to="{{$index}}"
+            ng-class="{active:!$index}"></li>
+    </ol>
+
+    <div class="carousel-inner">
+        <div class="item" ng-repeat="slide in vm.slides track by $index" ng-class="{active:!$index}">
+            <div class="w3-row w3-mlrngreen">
+                <div class="w3-col m9 w3-white">
+                    <img ng-src="{{vm.config.apiUrl + '/files/' + slide.images[0].filename}}" alt="slide" style="width:100%;">
+                </div>
+                <div class="w3-col m3 w3-padding-large">
+                    <h3>{{slide.title}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a class="left carousel-control" data-target="#bannerCarousel" data-slide="prev" style="cursor:pointer">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" data-target="#bannerCarousel" data-slide="next" style="cursor:pointer">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        <span class="sr-only">Next</span>
+    </a>
+
+</div>
+
+<div class="w3-row w3-margin-top" style="border-color:#ccc; border-style:solid solid solid solid;border-width:1px;">
+    <div class="w3-col m6 w3-padding-small" ng-style="{'border-bottom' : 
+    (!vm.appContext.isMobile && [0,1].indexOf($index)>-1 || vm.appContext.isMobile && !$last) ? '1px solid #ccc' : '1px solid transparent', 
+    'border-left' : 
+    (!vm.appContext.isMobile && [1,3].indexOf($index)>-1) ? '1px solid #ccc' : '1px solid transparent'}" ng-repeat="cell in vm.contenstList">
+        <div class="w3-right">
+            <a class="w3-text-gray w3-opacity" ui-sref="board.list({'main_menu':cell.main_menu, 'sub_menu':cell.sub_menu})">
+                <i class="far fa-plus-square"></i>
+            </a>
+        </div>
+        <div>
+            <strong>{{cell.header}}</strong>
+        </div>
+
+        <div style="height:6.4em; width:100%; background:#fff">
+            <div ng-repeat="item in cell.list" style="line-height:1.4em;white-space:nowrap; overflow:hidden; text-overflow:ellipsis">
+                <a href="" class="w3-small" ui-sref="board.view({'main_menu':cell.main_menu, 'sub_menu':cell.sub_menu, 'articleId': item._id})">{{item.title}}</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="w3-hide w3-row">
+    <div class="w3-col s12">
+        <div class="link-wrapper w3-margin-bottom">
+            <a class="site-link" href="http://ojeri.korea.ac.kr" target="_blank" bs-tooltip data-toggle="tooltip" data-placement="top" title="OJERI">
+                <img style="height:24px; margin:4px" src="images/logos/ojeri_logo.png" alt="">
+            </a>
+            <a class="site-link" href="http://www.unsdsn.org/" target="_blank" data-toggle="tooltip" data-placement="top" title="UN SDSN">
+                <img style="height:24px; margin:4px" src="images/logos/sdsn_logo_fc.png" alt="">
+            </a>
+            <a class="site-link" href="https://sustainabledevelopment.un.org/" target="_blank" data-toggle="tooltip" data-placement="top"
+                title="UN Sustainable Development Knowledge Platform">
+                <img style="height:24px; margin:4px" src="images/logos/UN_DKP.png" alt="">
+            </a>
+            <a class="site-link" href="http://www.sd-network.eu/" target="_blank" data-toggle="tooltip" data-placement="top" title="ESDN">
+                <img style="height:24px; margin:4px" src="images/logos/ESDN.gif" alt="">
+            </a>
+            <a class="site-link" href="http://www.iddri.org/" target="_blank" data-toggle="tooltip" data-placement="top" title="IDDRI">
+                <img style="height:24px; margin:4px" src="images/logos/IDDRI.jpg" alt="">
+            </a>
+            <a class="site-link" href="http://kei.re.kr/aKor/main.kei" target="_blank" data-toggle="tooltip" data-placement="top" title="KEI">
+                <img style="height:24px; margin:4px" src="images/logos/KEI.jpg" alt="">
+            </a>
+
+            <a class="site-link" href="https://www.un.org/development/desa/en/" target="_blank" data-toggle="tooltip" data-placement="top"
+                title="UN DESA">
+                <img style="height:24px; margin:4px" src="images/logos/UNDESA.png" alt="">
+            </a>
+            <a class="site-link" href="http://www.unescap.org/" target="_blank" data-toggle="tooltip" data-placement="top" title="UNESCAP">
+                <img style="height:24px; margin:4px" src="images/logos/ESCAP.png" alt="">
+            </a>
+            <a class="site-link" href="http://www.oecd.org/greengrowth/ggsd-forum.htm" target="_blank" data-toggle="tooltip" data-placement="top"
+                title="GGSD Forum">
+                <img style="height:24px; margin:4px" src="images/logos/GGSD_OECD.png" alt="">
+            </a>
+            <a class="site-link" href="http://web.unep.org/" target="_blank" data-toggle="tooltip" data-placement="top" title="UNEP">
+                <img style="height:24px; margin:4px" src="images/logos/UNEP.png" alt="">
+            </a>
+            <a class="site-link" href="http://www.greengrowthknowledge.org/" target="_blank" data-toggle="tooltip" data-placement="top"
+                title="Green Growth Knowledge Platform">
+                <img style="height:24px; margin:4px" src="images/logos/green_growth_knowledge_platform.png" alt="">
+            </a>
+            <a class="site-link" href="http://gggi.org/" target="_blank" data-toggle="tooltip" data-placement="top" title="GGGI">
+                <img style="height:24px; margin:4px" src="images/logos/GGGI.png" alt="">
+            </a>
+            <a class="site-link" href="http://www.unssc.org/" target="_blank" data-toggle="tooltip" data-placement="top" title="UNSSC">
+                <img style="height:24px; margin:4px" src="images/logos/unssc-logo.png" alt="">
+            </a>
+            <a class="site-link" href="http://deepdecarbonization.org/" target="_blank" data-toggle="tooltip" data-placement="top" title="DDPP">
+                <img style="height:24px; margin:4px" src="images/logos/DDPP.png" alt="">
+            </a>
+            <a class="site-link" href="http://www.die-gdi.de/en/" target="_blank" data-toggle="tooltip" data-placement="top" title="DIE">
+                <img style="height:24px; margin:4px" src="images/logos/DIE.jpg" alt="">
+            </a>
+        </div>
+    </div>
+</div>
+
+<div style="margin: 0 0px">
+    <slick lazy-load="ondemand" init-onload="true" data="vm.links" dots="false" infinite="true" speed="300" slides-to-show="5"
+        autoplay=true autoplaySpeed=2000 slides-to-scroll="1" touch-move="false" class="w3-margin-top" style="margin-right:1px;">
+        <div ng-repeat="item in vm.links" class="w3-border w3-padding-small" style="margin:0 4px; overflow:hidden;">
+            <a href="" ng-href="{{item.url}}" target="_blank">
+                <img class="w3-grayscale-max" ng-src="{{vm.config.apiUrl + '/files/' + item.images[0].filename}}" alt="" style="max-width:100%; height:30px; margin:0 auto">
+            </a>
+        </div>
+    </slick>
+</div>

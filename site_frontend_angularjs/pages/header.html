@@ -1,0 +1,68 @@
+<!-- <div>{{vm.config}}</div> -->
+<div>
+  <div class="w3-content" style="max-width:990px;margin-top:40px;margin-bottom:16px">
+    <div class="w3-row-padding">
+      <div class="roboto w3-col m12">
+        <a href="" ui-sref="board.home({'main_menu': 'home'})" style="text-decoration:none">
+          <img ng-src="{{vm.config.headerLogoUrl}}" alt="" style="max-height:80px;">
+          <span class="w3-text-sdsnblue" style="font-size:2em">{{vm.appContext.appTitle}}</span>
+        </a>
+        <div class="w3-right">
+          <a href="">
+            <select ng-options="lang as lang.local for lang in vm.langs" ng-model="vm.lang" ng-change="vm.langChange()"></select>
+          </a>
+          <a href="" ng-if="!vm.appContext.user && vm.appContext.users.length>0" ui-sref="signin" class="w3-bar-item w3-padding-left">
+            Sign-in</a>
+          <a href="" ng-if="vm.appContext.users.length === 0" ui-sref="signup" class="w3-bar-item w3-padding-left">
+            Sign-up</a>
+          <a href="" ng-if="vm.appContext.user" ng-controller="signin.ctrl as vm" ng-click="vm.logout()" class="w3-bar-item w3-padding-left">
+            Sign-out</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <nav class="w3-sdsnblue">
+    <div class="w3-center w3-hide-small">
+      <div class="w3-bar" style="margin-top:5px;">
+        <div class="w3-dropdown-hover w3-sdsnblue w3-hover-sdsnblue w3-hide-small" ng-class="{'w3-mlrn-bar-item' : !$last}" ng-repeat="menu in vm.appContext.menuArray.list">
+          <button ng-click="vm.menuClick(menu)" ng-if="!menu.isHome" ui-sref="{{ menu.list[menu.activeIndex].mode==='board' ? 'board.list({main_menu: menu.name,sub_menu:menu.list[menu.activeIndex].name})'
+            : 'board.page({main_menu: menu.name,sub_menu:menu.list[menu.activeIndex].name})' }}" ng-click="vm.showDropdown = false;"
+            class="w3-button w3-sdsnblue w3-hover-sdsnblue" ng-mouseenter="vm.showDropdown = true"> {{menu.title}} </button>
+          <button ng-click="vm.menuClick(menu)" ng-if="menu.isHome" ui-sref="board.home({main_menu: menu.name,sub_menu:menu.list[menu.activeIndex].name})" ng-click="vm.showDropdown = false;"
+            class="w3-button w3-sdsnblue w3-hover-sdsnblue" ng-mouseenter="vm.showDropdown = true"> <i class="fas fa-home"></i> </button>
+          <div ng-show="vm.showDropdown" ng-if="menu.list.length > 0" style="z-index:9999; background:transparent; padding-top:10px" class="w3-dropdown-content w3-bar-block w3-card-0">
+            <div ng-click="vm.menuClick(item)"  ng-repeat="item in menu.list">
+              <a ng-if="!item.list" href="" ng-click="vm.menuClick(item);vm.showDropdown = false" ui-sref="{{ item.mode==='board' 
+              ? 'board.list({main_menu: menu.name,sub_menu:item.name})' 
+              : 'board.page({main_menu: menu.name,sub_menu:item.name})' }}" class="w3-bar-item w3-hide-small w3-button w3-border-bottom w3-border-gray w3-sdsnblue w3-hover-sdsnblue">
+                {{item.title}}
+              </a>
+              <a ng-if="item.list" href="" ng-click="vm.menuClick(item);vm.showDropdown = false" ui-sref="{{ item.mode==='board' 
+              ? 'board.list({main_menu: menu.name,sub_menu:item.list[0].name})' 
+              : 'board.page({main_menu: menu.name,sub_menu:item.list[0].name})' }}" class="w3-bar-item w3-hide-small w3-button w3-border-bottom w3-border-gray w3-sdsnblue w3-hover-sdsnblue">
+                {{item.title}}
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- <a href="" ui-sref="home" class="w3-bar-item w3-hide-small">
+          <i class="fas fa-home"></i>
+        </a> -->
+      </div>
+    </div>
+    <div class="w3-hide-large w3-hide-medium">
+      <div class="w3-bar" style="margin-top:5px;">
+        <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right" ng-click="vm.dropMenu = !vm.dropMenu">&#9776;</a>
+      </div>
+    </div>
+    <div class="w3-center">
+      <div ng-click="vm.dropMenu = !vm.dropMenu" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium" ng-class="{'w3-show': vm.dropMenu, 'w3-hide': !vm.dropMenu}">
+        <div class="w3-dropdown-hover w3-sdsnblue w3-hover-sdsnblue" ng-repeat="menu in vm.appContext.menuArray.list">
+          <button ui-sref="{{ menu.list[menu.activeIndex].mode==='board' ? 'board.list({main_menu: menu.name,sub_menu:menu.list[menu.activeIndex].name})'
+        : 'board.page({main_menu: menu.name,sub_menu:menu.list[menu.activeIndex].name})' }}" class="w3-button w3-sdsnblue w3-hover-sdsnblue">
+            {{menu.title}} </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
