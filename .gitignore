@@ -32,3 +32,6 @@ templates.js
 
 #uploads folder
 uploads
+
+#sftp config
+sftp.json

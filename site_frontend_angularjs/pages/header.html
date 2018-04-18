@@ -1,4 +1,4 @@
-<!-- <div>{{vm.config}}</div> -->
+<!-- <div class="w3-pink">TEST</div> -->
 <div>
   <div class="w3-content" style="max-width:990px;margin-top:40px;margin-bottom:16px">
     <div class="w3-row-padding">
@@ -15,7 +15,7 @@
             Sign-in</a>
           <a href="" ng-if="vm.appContext.users.length === 0" ui-sref="signup" class="w3-bar-item w3-padding-left">
             Sign-up</a>
-          <a href="" ng-if="vm.appContext.user" ng-controller="signin.ctrl as vm" ng-click="vm.logout()" class="w3-bar-item w3-padding-left">
+          <a href="" ng-if="vm.appContext.user" ng-controller="signin.ctrl as vm" ng-click="vm.signout()" class="w3-bar-item w3-padding-left">
             Sign-out</a>
         </div>
       </div>

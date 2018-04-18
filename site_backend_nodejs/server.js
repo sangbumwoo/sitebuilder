@@ -11,7 +11,7 @@ var logger          = require('morgan'),
 var app = express();
 
 
-console.log('test');
+//console.log('test');
 
 dotenv.load();
 
@@ -27,7 +27,8 @@ app.use(bodyParser.json());
 app.use(cors());
 // app.use(multer({ dest: './uploads/'}))
 
-app.use('/', express.static('public'));
+// app.use('/', express.static('public'));
+app.use('/', express.static(path.join(__dirname, '../site_frontend_angularjs')));
 app.use('/files', express.static(path.join(__dirname, '/uploads')));
 app.use(function(err, req, res, next) {
   if (err.name === 'StatusError') {

@@ -1,7 +1,47 @@
+// function w3_open() {
+//     document.getElementById("main").style.marginLeft = "180px";
+//     document.getElementById("mySidebar").style.width = "180px";
+//     document.getElementById("mySidebar").style.display = "block";
+//     document.getElementById("openNav").style.display = 'none';
+// }
+// function w3_close() {
+//     document.getElementById("main").style.marginLeft = "0";
+//     document.getElementById("mySidebar").style.display = "none";
+//     if (document.getElementById("openNav")) {
+//         document.getElementById("openNav").style.display = "inline-block";
+//     }
+// }
+
+
+// function myAccFunc() {
+//     var x = document.getElementById("demoAcc");
+//     if (x.className.indexOf("w3-show") == -1) {
+//         x.className += " w3-show";
+//         x.previousElementSibling.className += " w3-green";
+//     } else {
+//         x.className = x.className.replace(" w3-show", "");
+//         x.previousElementSibling.className =
+//             x.previousElementSibling.className.replace(" w3-green", "");
+//     }
+// }
+
+// function myDropFunc() {
+//     var x = document.getElementById("demoDrop");
+//     if (x.className.indexOf("w3-show") == -1) {
+//         x.className += " w3-show";
+//         x.previousElementSibling.className += " w3-green";
+//     } else {
+//         x.className = x.className.replace(" w3-show", "");
+//         x.previousElementSibling.className =
+//             x.previousElementSibling.className.replace(" w3-green", "");
+//     }
+// }
+
+
 app.controller('main.ctrl', function ($location, $window, $state, $scope, userService, boardService, appContextService, toastr, config) {
     
     console.log('MAIN')
-    
+    $scope._ = _;
     var vm = this;
     vm.appContext = appContextService.context;
     // vm.version = Date.now();
@@ -52,6 +92,7 @@ app.controller('main.ctrl', function ($location, $window, $state, $scope, userSe
         } else {
             vm.appContext.isMobile = false;
         }
+        // w3_close();
     };
     checkMobile();
 
@@ -89,7 +130,10 @@ app.controller('main.ctrl', function ($location, $window, $state, $scope, userSe
         event.stopPropagation();
     }
     vm.bodyClick = function () {
+        console.log('bodyClick')
         vm.showRelatedLinkDropdown = false;
+        vm.showMobileMenu = false;
+
     }
 
 })

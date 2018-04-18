@@ -7,7 +7,7 @@ app.factory('userService', function($http, config){
     return $http.post(config.site.apiUrl + '/user/signup', user);
   }
 
-  factory.login = function(user) {
+  factory.signin = function(user) {
     return $http.post(config.site.apiUrl + '/user/login', user);
   }
 

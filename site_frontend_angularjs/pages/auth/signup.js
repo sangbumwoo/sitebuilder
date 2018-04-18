@@ -1,11 +1,11 @@
-app.controller('signup.ctrl', function ($scope, $rootScope, $state, $stateParams, $http, toastr, config, appContextService){
+app.controller('signup.ctrl', function ($window, $scope, $rootScope, $state, $stateParams, $http, toastr, config, appContextService, userService){
 
     var vm = this;
     vm.appContext = appContextService.context;
 
     vm.data = {
-        email: '',
-        password: '',
+        email: $window.localStorage.getItem('email'),
+        password: $window.localStorage.getItem('password'),
         role: 'admin'
     }
 
@@ -21,7 +21,8 @@ app.controller('signup.ctrl', function ($scope, $rootScope, $state, $stateParams
 
         // return;
 
-         $http.post(vm.appContext.apiUrl + '/user/signup', user).then(function (res) {
+        //  $http.post(vm.appContext.apiUrl + '/user/signup', user).then(function (res) {
+        userService.signup(vm.data).then(function (res) {
 
             $state.go('signin')
 

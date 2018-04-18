@@ -1,11 +1,12 @@
 <!doctype html>
-<html ng-app="app" ng-controller="main.ctrl as vm" ng-cloak>
+<html lang="en-KR" ng-app="app" ng-controller="main.ctrl as vm" ng-cloak>
 
 <head>
 
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="google" value="notranslate">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title ng-bind="vm.appContext.pageTitle">Loading...</title>
 
@@ -87,6 +88,69 @@
     </div>
   </div>
   <div ng-include="'pages/footer.html'"></div>
+<!-- 
+<div class="w3-sidebar w3-light-grey w3-card-4 w3-animate-left" style="width: 180px; display: none;" id="mySidebar">
+  <div class="w3-bar w3-dark-grey">
+    <span class="w3-bar-item w3-padding-16">Content</span>
+    <button onclick="w3_close()" class="w3-bar-item w3-button w3-right w3-padding-16" title="close Sidebar">×</button>
+  </div>
+  <div class="w3-bar-block">
+
+      <a href="#" class="w3-bar-item w3-button">Link 1</a>
+      <button class="w3-button w3-block w3-left-align" onclick="myAccFunc()">
+        Accordion
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div id="demoAcc" class="w3-hide w3-white w3-card">
+        <a href="#" class="w3-bar-item w3-button">Link</a>
+        <a href="#" class="w3-bar-item w3-button">Link</a>
+      </div>
+      
+      <div class="w3-dropdown-click">
+        <button class="w3-button" onclick="myDropFunc()">
+          Dropdown
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div id="demoDrop" class="w3-dropdown-content w3-bar-block w3-white w3-card">
+          <a href="#" class="w3-bar-item w3-button">Link</a>
+          <a href="#" class="w3-bar-item w3-button">Link</a>
+        </div>
+      </div>
+      <a href="#" class="w3-bar-item w3-button">Link 2</a>
+      <a href="#" class="w3-bar-item w3-button">Link 3</a>
+
+
+    <a class="w3-bar-item w3-button w3-green" href="javascript:void(0)">Home</a>
+    <a class="w3-bar-item w3-button" href="javascript:void(0)">About</a>
+    <a class="w3-bar-item w3-button" href="javascript:void(0)">Contact</a>
+    <div class="w3-dropdown-hover">
+      <a class="w3-button" href="javascript:void(0)">Dropdown
+        <i class="fa fa-caret-down"></i>
+      </a>
+      <div class="w3-dropdown-content w3-bar-block w3-card-4">
+        <a class="w3-bar-item w3-button" href="javascript:void(0)">Link 1</a>
+        <a class="w3-bar-item w3-button" href="javascript:void(0)">Link 2</a>
+        <a class="w3-bar-item w3-button" href="javascript:void(0)">Link 3</a>
+      </div>
+    </div>
+    <a class="w3-bar-item w3-button" href="javascript:void(0)">Support</a>
+  </div>
+</div>
+
+<div id="main" style="margin-left: 0px;">
+
+  <div class="w3-container w3-display-container">
+    <span title="open Sidebar" style="display: inline-block;" id="openNav" class="w3-button w3-transparent w3-display-topleft w3-xlarge"
+      onclick="w3_open()">☰</span>
+    <span title="open Sidebar" style="display: inline-block;" id="openNav" class="w3-button w3-transparent w3-display-topleft w3-xlarge"
+      onclick="w3_open()"></span>
+      
+    <h3 class="h3" style="position:fixed;top:36px;">My Page</h3>
+    <h3>isMobile : {{vm.appContext.isMobile}}</h3>
+  </div>
+
+</div> -->
+
 </body>
 
 </html>
