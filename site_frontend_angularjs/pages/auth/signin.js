@@ -57,7 +57,6 @@ app.controller('signin.ctrl', function ($scope, $window, $rootScope, $state, $st
         $window.localStorage.removeItem('token');
         vm.appContext.user = null;
         vm.appContext.menuArray = angular.copy(config.langs[$window.localStorage.getItem('lang')].menu);
-
         console.log('vm.appContext.menuArray', vm.appContext.menuArray)
         _.remove(vm.appContext.menuArray.list, {adminRequired : true});
         // $state.go('home');

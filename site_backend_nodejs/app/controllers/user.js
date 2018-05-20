@@ -24,65 +24,19 @@ mongoClient.connect(config.connectionString, function (err, database) {
     }
 });
 
-
-
-// exports.login = function (req, res) {
-//       co(function*(){
-//         var args = {email : req.body.email};
-//         var result=yield model.findOneDoc(args, db.collection('users'));
-//           if (!bcrypt.compareSync(req.body.password, result.password) ) {
-//               return res.status(401).send("Autheication failed");
-//           }
-//           delete result.password;
-//           var lastlogin = yield model.partialUpdate(args,{$set:{last_login : new Date()}},db.collection('users'));
-//           if(lastlogin.n===1){
-//             var token = createToken(result);
-//             console.log(token);
-//           res.status(201).send({
-//               id_token: token
-//           });
-//         }
-//       }).catch(function(err){
-//         console.log(err);
-//         console.log(err.stack);
-//         res.status(500).end();
-//       });
-
-// };
-
 exports.login = function (req, res) {
-  // co(function* () {
-  //   var args = { email: req.body.email };
-  //   var result = yield model.findOneDoc(args, db.collection('users'));
-  //   if (!bcrypt.compareSync(req.body.password, result.password)) {
-  //     return res.status(401).send("Autheication failed");
-  //   }
-  //   delete result.password;
-  //   var lastlogin = yield model.partialUpdate(args, { $set: { last_login: new Date() } }, db.collection('users'));
-  //   if (lastlogin.n === 1) {
-  //     var token = createToken(result);
-  //     console.log(token);
-  //     res.status(201).send({
-  //       id_token: token
-  //     });
-  //   }
-  // }).catch(function (err) {
-  //   console.log(err);
-  //   console.log(err.stack);
-  //   res.status(500).end();
-  // });
 
   db.collection('users').findOne({ email: req.body.email }, function (err, doc) {
-    if (!doc || !bcrypt.compareSync(req.body.password, doc.password)) {
-      return res.status(401).send("Autheication failed");
+    if (!doc) {
+      return res.status(401).send("Autheication failed. Email not exist.");
+    } else if (!bcrypt.compareSync(req.body.password, doc.password)) {
+      return res.status(401).send("Autheication failed. Password not match.");
     }
     var token = createToken(doc);
-    console.log(token);
-    res.status(201).send({
+    res.status(200).send({
       id_token: token
     });
   })
-
 
 };
 
@@ -93,9 +47,6 @@ exports.signup = function (req, res) {
     return res.status(400).send("You must send the email and the password");
   }
 
-  // console.log('Program Start');
-
-  // var async = require('async');
   async.waterfall([
     function (callback) {
       // console.log('First Step --> ');
@@ -103,7 +54,7 @@ exports.signup = function (req, res) {
         if (docs.length === 0) {
           callback(null, '1', '2');
         } else {
-          callback('duplicate')
+          callback('Email duplicated.')
         }
       })
     },
@@ -131,31 +82,6 @@ exports.signup = function (req, res) {
 
 };
 
-
-exports.signup2 = function (req, res) {
-
-    if (!req.body.email || !req.body.password) {
-        return res.status(400).send("You must send the email and the password");
-    }
-    co(function*(){
-        var args = {email : req.body.email};
-        var valid = yield model.findDoc(args, db.collection('users'));
-        if(!valid) {
-            req.body.password = bcrypt.hashSync(req.body.password);
-            req.body.created = new Date();
-            var result= yield model.insertDoc(req.body, db.collection('users'), 'userid');
-            if(result){
-                res.status(200).send(result);
-            }else res.status(500).send('Internal Error');
-        }  else res.status(409).send('Duplicate error');
-    }).catch(function(err){
-        console.log(err);
-        console.log(err.stack);
-        res.status(500).end();
-    });
-
-};
-
 exports.list = function (req, res) {
 
   db.collection('users').find({}).sort({ "_id": -1 }).toArray(function (err, results) {
@@ -163,9 +89,6 @@ exports.list = function (req, res) {
   })
 
 };
-
-
-
 
 
 //페이스북 로그인

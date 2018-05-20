@@ -1,0 +1,16 @@
+{
+  "name": "sitebuilder",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/sangbumwoo/sitebuilder.git",
+  "author": "sangbumwoo <sbwoo87@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "serve": "concurrently --kill-others \"nodemon ./site_backend_nodejs/server.js\" \"npm run --prefix ./site_frontend_vue_js serve\"",
+    "serve2": "concurrently --kill-others \"node ./site_backend_nodejs/server.js\" \"npm run --prefix ./site_frontend_vue_js serve\"",
+    "serve1": "node ./site_backend_nodejs/server.js | npm run --prefix ./site_frontend_vue_js serve"
+  },
+  "dependencies": {
+    "concurrently": "^3.5.1"
+  }
+}

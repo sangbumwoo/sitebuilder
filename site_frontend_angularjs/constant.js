@@ -686,8 +686,8 @@ app.constant('config', {
         backgroundClass: 'w3-sdsnblue',
         hoverBackgroundClass: 'w3-hover-sdsnblue',
         hideFooterLine: true,
-        apiUrl: 'http://ec2-13-125-208-224.ap-northeast-2.compute.amazonaws.com',
-        // apiUrl: 'http://127.0.0.1:1337',
+        // apiUrl: 'http://ec2-13-125-208-224.ap-northeast-2.compute.amazonaws.com',
+        apiUrl: 'http://127.0.0.1:1337',
     },
 
 });

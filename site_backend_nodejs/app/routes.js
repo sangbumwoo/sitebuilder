@@ -11,6 +11,7 @@ var jwtCheck = jwt({
 var board = require('./controllers/board.js');
 var user = require('./controllers/user.js');
 var header = require('./controllers/header.js');
+var config = require('./controllers/config.js');
 
 // var restapi = require('./controllers/restapi.js');
 // var admin = require('./controllers/admin.js');
@@ -90,6 +91,8 @@ module.exports = function (app) {
     app.post('/user/login', user.login);
     app.post('/user/signup', user.signup);
     app.get('/user/list', user.list);
+
+    app.get('/config', config.list)
 
 
 };
