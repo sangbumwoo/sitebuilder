@@ -1,0 +1,32 @@
+<div class="w3-container w3-indigo">
+  <div style="max-width:990px; margin: 0px auto; padding:0">
+    <div class="w3-right w3-blue">
+      <select class="w3-select" name="option">
+        <option value="" disabled>Choose language</option>
+        <option value="1" selected>한글</option>
+        <option value="2">English</option>
+      </select>
+
+    </div>
+    <h1>SiteBuilder</h1>
+    <div class="w3-bar">
+      <ng-container *ngFor="let menu of menus">
+        <a *ngIf="!menu.children.length" routerLink="{{menu.path}}/{{menu.type}}" class="w3-bar-item w3-button">{{menu.title}}</a>
+
+        <div *ngIf="menu.children.length" class="w3-dropdown-hover" (mouseenter)="showDropDown = true;">
+<button class="w3-button" routerLink="{{menu.children[0].path}}/{{menu.children[0].type}}" (click)="menuClick($event)">{{menu.title}}</button>
+
+
+          <div class="w3-dropdown-content w3-bar-block w3-card-4" *ngIf="showDropDown">
+<a *ngFor="let menu of menu.children" routerLink="{{menu.path}}/{{menu.type}}" class="w3-bar-item w3-button" (click)="menuClick($event)">{{menu.title}}</a>
+
+          </div>
+        </div>
+      </ng-container>
+
+      <a href="#" class="w3-bar-item w3-button w3-right">Log-out</a>
+      <a href="#" class="w3-bar-item w3-button w3-right">Log-in</a>
+      <span class="w3-bar-item w3-text w3-text-yellow  w3-right">Admin</span>
+    </div>
+  </div>
+</div>
